@@ -14,7 +14,9 @@ function initPreloader() {
   const loader = qs('#preloader');
   const fill = qs('.pre-fill');
   const count = qs('.pre-count');
-  const images = qsa('img');
+  // Only track eagerly-loaded images — lazy ones never fire 'load' while the
+  // preloader is covering the viewport, causing a permanent deadlock at 0%.
+  const images = qsa('img:not([loading="lazy"])');
   let loaded = 0;
   const total = images.length || 1;
 
