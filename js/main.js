@@ -156,17 +156,16 @@ function initTitleReveals() {
       `<span class="split-line"><span class="split-inner">${part}</span></span>`
     ).join('');
 
+    // GSAP owns the transform from creation — avoids CSS+GSAP doubling when
+    // using yPercent (CSS % and GSAP matrix reads compound instead of override)
+    gsap.set(qsa('.split-inner', el), { yPercent: 110 });
+
     ScrollTrigger.create({
       trigger: el,
       start: 'top 85%',
       onEnter: () => {
         qsa('.split-inner', el).forEach((ln, i) => {
-          // fromTo explicitly sets both ends — gsap.from() alone reads the CSS
-          // translateY(110%) as the "to" value and animates 110%→110% (no-op)
-          gsap.fromTo(ln,
-            { yPercent: 110 },
-            { yPercent: 0, duration: 0.9, delay: i * 0.08, ease: 'power4.out' }
-          );
+          gsap.to(ln, { yPercent: 0, duration: 0.9, delay: i * 0.08, ease: 'power4.out' });
         });
       },
       once: true

@@ -154,7 +154,7 @@ nav.nav-solid .nav-cta { border-color: var(--ink3); color: var(--ink2); }
 
 /* Title mask reveal */
 .split-line { overflow: hidden; display: block; }
-.split-inner { display: block; transform: translateY(110%); }
+.split-inner { display: block; }
 
 /* ── REVEAL ANIMATIONS ─────────────────────────────────── */
 .js-reveal { opacity: 0; transform: translateY(32px); }
