@@ -3,7 +3,7 @@
    GSAP 3 + ScrollTrigger + SplitText
    ═══════════════════════════════════════════════════════════ */
 
-gsap.registerPlugin(ScrollTrigger, SplitText);
+gsap.registerPlugin(ScrollTrigger);
 
 // ── UTILITIES ──────────────────────────────────────────────
 const qs = (s, ctx = document) => ctx.querySelector(s);
@@ -146,22 +146,17 @@ function initHero() {
 // ── TITLE SPLIT REVEALS ────────────────────────────────────
 function initTitleReveals() {
   qsa('.s-title').forEach(el => {
-    const split = new SplitText(el, { type: 'lines', linesClass: 'split-line' });
-    split.lines.forEach(line => {
-      const inner = document.createElement('span');
-      inner.className = 'split-inner';
-      inner.innerHTML = line.innerHTML;
-      line.innerHTML = '';
-      line.appendChild(inner);
-    });
+    // Split on explicit <br> tags (all s-title elements use these for line breaks)
+    const parts = el.innerHTML.split(/<br\s*\/?>/i);
+    el.innerHTML = parts.map(part =>
+      `<span class="split-line"><span class="split-inner">${part}</span></span>`
+    ).join('');
 
     ScrollTrigger.create({
       trigger: el,
       start: 'top 85%',
       onEnter: () => {
         qsa('.split-inner', el).forEach((ln, i) => {
-          gsap.to(ln, { yPercent: 0, duration: 0.9, delay: i * 0.08, ease: 'power4.out',
-            from: { yPercent: 110 } });
           gsap.from(ln, { yPercent: 110, duration: 0.9, delay: i * 0.08, ease: 'power4.out' });
         });
       },
