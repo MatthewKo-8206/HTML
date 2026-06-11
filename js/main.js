@@ -14,11 +14,27 @@ function initPreloader() {
   const loader = qs('#preloader');
   const fill = qs('.pre-fill');
   const count = qs('.pre-count');
-  // Only track eagerly-loaded images — lazy ones never fire 'load' while the
-  // preloader is covering the viewport, causing a permanent deadlock at 0%.
   const images = qsa('img:not([loading="lazy"])');
   let loaded = 0;
+  let finished = false; // must be declared before forEach — cached images call finish() synchronously
   const total = images.length || 1;
+
+  function finish() {
+    if (finished) return;
+    finished = true;
+    count.textContent = 100;
+    gsap.to(fill, { width: '100%', duration: 0.3, ease: 'power2.out', onComplete: () => {
+      gsap.to(loader, {
+        yPercent: -100, duration: 0.9, delay: 0.2,
+        ease: 'power3.inOut',
+        onComplete: () => {
+          loader.style.display = 'none';
+          ScrollTrigger.refresh();
+          initHero();
+        }
+      });
+    }});
+  }
 
   function onLoad() {
     loaded++;
@@ -33,21 +49,7 @@ function initPreloader() {
     else { img.addEventListener('load', onLoad); img.addEventListener('error', onLoad); }
   });
 
-  // Fallback: never wait more than 2.5s
   setTimeout(finish, 2500);
-
-  let finished = false;
-  function finish() {
-    if (finished) return;
-    finished = true;
-    gsap.to(fill, { width: '100%', duration: 0.3, ease: 'power2.out', onComplete: () => {
-      gsap.to(loader, {
-        yPercent: -100, duration: 0.9, delay: 0.2,
-        ease: 'power3.inOut',
-        onComplete: () => { loader.style.display = 'none'; initHero(); }
-      });
-    }});
-  }
 }
 
 // ── CURSOR ─────────────────────────────────────────────────
@@ -159,7 +161,12 @@ function initTitleReveals() {
       start: 'top 85%',
       onEnter: () => {
         qsa('.split-inner', el).forEach((ln, i) => {
-          gsap.from(ln, { yPercent: 110, duration: 0.9, delay: i * 0.08, ease: 'power4.out' });
+          // fromTo explicitly sets both ends — gsap.from() alone reads the CSS
+          // translateY(110%) as the "to" value and animates 110%→110% (no-op)
+          gsap.fromTo(ln,
+            { yPercent: 110 },
+            { yPercent: 0, duration: 0.9, delay: i * 0.08, ease: 'power4.out' }
+          );
         });
       },
       once: true
@@ -175,12 +182,12 @@ function initScrollReveals() {
       trigger: el,
       start: 'top 88%',
       onEnter: () => {
-        gsap.to(el, {
-          opacity: 1, y: 0, duration: 0.85, delay,
-          ease: 'power3.out',
-          onStart: () => el.classList.add('revealed')
-        });
-        gsap.from(el, { opacity: 0, y: 32, duration: 0.85, delay, ease: 'power3.out' });
+        // fromTo overrides CSS (opacity:0, translateY(32px)) explicitly.
+        // gsap.from() alone would read the CSS as the "to" value → animates 0→0 (no-op).
+        gsap.fromTo(el,
+          { opacity: 0, y: 32 },
+          { opacity: 1, y: 0, duration: 0.85, delay, ease: 'power3.out' }
+        );
       },
       once: true
     });
