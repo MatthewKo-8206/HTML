@@ -30,7 +30,9 @@ function initPreloader() {
       const horizon = qs('.pre-horizon', loader);
       const sun     = qs('.pre-sun',     loader);
 
-      // One continuous sunrise timeline — no sharp intervals
+      // Keep bottom in px throughout — avoids GSAP px↔% interpolation bug
+      const sunTargetPx = Math.round(loader.offsetHeight * 0.40);
+
       const tl = gsap.timeline({
         onComplete: () => {
           loader.style.display = 'none';
@@ -39,16 +41,11 @@ function initPreloader() {
         }
       });
 
-      // Night sky warms to deep pre-dawn (starts immediately, long & gentle)
-      tl.to(sky,     { opacity: 1, duration: 2.6, ease: 'sine.inOut' }, 0);
-      // Horizon orange glow rises from below, overlapping sky warm
-      tl.to(horizon, { opacity: 1, duration: 2.8, ease: 'power2.out' }, 0.2);
-      // Sun disc climbs from below the horizon — the centrepiece
-      tl.to(sun,     { opacity: 1, bottom: '42%', duration: 3.0, ease: 'power1.out' }, 0.4);
-      // Text dissolves naturally as light floods in
-      tl.to(inner,   { opacity: 0, y: -8,  duration: 1.4, ease: 'sine.in'  }, 0.8);
-      // Full bloom — whole loader fades to transparent, revealing site
-      tl.to(loader,  { opacity: 0, duration: 1.2, ease: 'power1.inOut' }, 3.2);
+      tl.to(sky,     { opacity: 1, duration: 2.4, ease: 'sine.inOut'  }, 0);
+      tl.to(horizon, { opacity: 1, duration: 2.6, ease: 'power2.out'  }, 0.2);
+      tl.to(sun,     { opacity: 1, bottom: sunTargetPx, duration: 2.8, ease: 'power1.out' }, 0.3);
+      tl.to(inner,   { opacity: 0, y: -8,  duration: 1.2, ease: 'sine.in' }, 0.6);
+      tl.to(loader,  { opacity: 0, duration: 1.0, ease: 'power1.inOut' }, 3.0);
     }});
   }
 
