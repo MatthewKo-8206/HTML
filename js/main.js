@@ -23,18 +23,21 @@ function initPreloader() {
     if (finished) return;
     finished = true;
     count.textContent = 100;
-    gsap.to(fill, { width: '100%', duration: 0.3, ease: 'power2.out', onComplete: () => {
+    gsap.to(fill, { width: '100%', duration: 0.4, ease: 'power2.out', onComplete: () => {
       const inner = qs('.pre-inner', loader);
       const seam  = qs('.pre-seam',  loader);
+      const glow  = qs('.pre-glow',  loader);
       const top   = qs('.pre-top',   loader);
       const bot   = qs('.pre-bot',   loader);
-      // 1. Fade text out
-      gsap.to(inner, { opacity: 0, y: -8, duration: 0.35, delay: 0.15, ease: 'power2.in' });
-      // 2. Golden seam glows along the horizon line
-      gsap.to(seam, { opacity: 1, duration: 0.45, delay: 0.4, ease: 'power2.out' });
-      // 3. Curtains split apart — dawn breaks
-      gsap.to(top, { yPercent: -100, duration: 0.9, delay: 0.7, ease: 'power3.inOut' });
-      gsap.to(bot, { yPercent: 100, duration: 0.9, delay: 0.7, ease: 'power3.inOut', onComplete: () => {
+      // 1. Hold at 100% briefly, then name fades
+      gsap.to(inner, { opacity: 0, y: -10, duration: 0.5, delay: 0.5, ease: 'power2.in' });
+      // 2. Warm golden glow blooms from center — sunlight cresting
+      gsap.to(glow, { opacity: 1, duration: 1.4, delay: 0.6, ease: 'power1.inOut' });
+      // 3. Seam ignites along the horizon
+      gsap.to(seam, { opacity: 1, duration: 0.9, delay: 1.1, ease: 'power2.out' });
+      // 4. Curtains slowly split — dawn breaks
+      gsap.to(top, { yPercent: -100, duration: 1.4, delay: 1.7, ease: 'power2.inOut' });
+      gsap.to(bot, { yPercent: 100,  duration: 1.4, delay: 1.7, ease: 'power2.inOut', onComplete: () => {
         loader.style.display = 'none';
         ScrollTrigger.refresh();
         initHero();

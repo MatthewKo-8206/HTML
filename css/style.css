@@ -47,10 +47,14 @@ body {
 .pre-bot { bottom: 0; height: 51%; }
 .pre-seam {
   position: absolute; left: 0; top: 50%;
-  width: 100%; height: 1px; z-index: 4; opacity: 0;
+  width: 100%; height: 2px; z-index: 4; opacity: 0;
   transform: translateY(-50%);
-  background: linear-gradient(90deg, transparent, var(--gold) 20%, var(--gold2) 50%, var(--gold) 80%, transparent);
-  box-shadow: 0 0 12px 2px rgba(184,146,74,0.45);
+  background: linear-gradient(90deg, transparent 0%, rgba(255,190,60,0.6) 20%, #FFD580 50%, rgba(255,190,60,0.6) 80%, transparent 100%);
+  box-shadow: 0 0 24px 6px rgba(255,170,40,0.5), 0 0 80px 20px rgba(255,140,20,0.18);
+}
+.pre-glow {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: 0;
+  background: radial-gradient(ellipse 70% 35% at 50% 50%, rgba(255,185,55,0.09) 0%, rgba(255,140,20,0.04) 45%, transparent 75%);
 }
 .pre-inner { text-align: center; position: relative; z-index: 2; }
 .pre-name {
@@ -395,11 +399,11 @@ nav.nav-solid .nav-cta { border-color: var(--ink3); color: var(--ink2); }
 
 /* ── CONNECT ───────────────────────────────────────────── */
 .section-connect { background: var(--cream); padding: 10rem 0 8rem; }
-.connect-inner { max-width: 800px; }
+.connect-inner { max-width: 800px; margin: 0 auto; text-align: center; }
 .connect-h { font-family: var(--serif); font-weight: 300; font-size: clamp(3rem, 7vw, 6rem); line-height: 1; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 1.5rem; }
 .connect-h em { font-style: italic; color: var(--ink3); }
-.connect-sub { font-size: 1.05rem; font-weight: 300; font-style: italic; color: var(--ink2); max-width: 48ch; margin-bottom: 3rem; line-height: 1.75; }
-.connect-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.connect-sub { font-size: 1.05rem; font-weight: 300; font-style: italic; color: var(--ink2); max-width: 48ch; margin: 0 auto 3rem; line-height: 1.75; }
+.connect-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; justify-content: center; }
 .btn-primary { font-family: var(--sans); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 1rem 2.5rem; background: var(--ink); color: var(--cream); text-decoration: none; transition: background 0.2s; }
 .btn-primary:hover { background: var(--dark2); }
 .btn-outline { font-family: var(--sans); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 1rem 2.5rem; border: 1.5px solid var(--ink3); color: var(--ink2); text-decoration: none; transition: all 0.2s; }
