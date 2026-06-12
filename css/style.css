@@ -73,6 +73,15 @@ body {
   );
   filter: blur(8px);
 }
+.pre-bloom {
+  position: absolute; inset: 0; z-index: 4; opacity: 0; pointer-events: none;
+  background: radial-gradient(ellipse 120% 70% at 50% 100%,
+    rgba(255,215,90,0.45)  0%,
+    rgba(255,160,30,0.22) 30%,
+    rgba(255,100,0,0.06)  55%,
+    transparent            70%
+  );
+}
 .pre-inner { text-align: center; position: relative; z-index: 10; }
 .pre-name {
   font-family: var(--serif); font-size: clamp(2rem, 5vw, 4rem);
@@ -336,12 +345,12 @@ nav.nav-solid .nav-cta { border-color: var(--ink3); color: var(--ink2); }
 .tl-logo-img {
   display: block; height: 20px; width: auto;
   margin-bottom: 0.75rem;
-  mix-blend-mode: multiply; /* blends white bg into cream page bg */
+  mix-blend-mode: multiply;
 }
-.tl-logo-img-moelis   { height: 14px; }
-.tl-logo-img-anz      { height: 26px; }
-.tl-logo-img-deloitte { height: 22px; }
-.tl-logo-img-ellerston { height: 18px; }
+.tl-logo-img-moelis    { height: 22px; }
+.tl-logo-img-anz       { height: 42px; }
+.tl-logo-img-deloitte  { height: 34px; }
+.tl-logo-img-ellerston { height: 28px; }
 .tl-logo-badge {
   display: inline-block; margin-bottom: 0.75rem;
   padding: 0.22rem 0.65rem; border-radius: 2px;

@@ -29,9 +29,11 @@ function initPreloader() {
       const sky     = qs('.pre-sky',     loader);
       const horizon = qs('.pre-horizon', loader);
       const sun     = qs('.pre-sun',     loader);
+      const bloom   = qs('.pre-bloom',   loader);
 
-      // Keep bottom in px throughout — avoids GSAP px↔% interpolation bug
-      const sunTargetPx = Math.round(loader.offsetHeight * 0.40);
+      // All bottom values in px — no px↔% GSAP interpolation
+      const h = loader.offsetHeight;
+      const sunTargetPx = Math.round(h * 0.40);
 
       const tl = gsap.timeline({
         onComplete: () => {
@@ -41,11 +43,16 @@ function initPreloader() {
         }
       });
 
-      tl.to(sky,     { opacity: 1, duration: 2.4, ease: 'sine.inOut'  }, 0);
-      tl.to(horizon, { opacity: 1, duration: 2.6, ease: 'power2.out'  }, 0.2);
+      // Sky warms, horizon glows, sun rises
+      tl.to(sky,     { opacity: 1, duration: 2.4, ease: 'sine.inOut' }, 0);
+      tl.to(horizon, { opacity: 1, duration: 2.6, ease: 'power2.out' }, 0.2);
       tl.to(sun,     { opacity: 1, bottom: sunTargetPx, duration: 2.8, ease: 'power1.out' }, 0.3);
-      tl.to(inner,   { opacity: 0, y: -8,  duration: 1.2, ease: 'sine.in' }, 0.6);
-      tl.to(loader,  { opacity: 0, duration: 1.0, ease: 'power1.inOut' }, 3.0);
+      tl.to(inner,   { opacity: 0, y: -8, duration: 1.2, ease: 'sine.in' }, 0.6);
+      // Gradual golden bloom — sun at its peak before the world opens
+      tl.to(bloom,   { opacity: 1, duration: 1.1, ease: 'power1.inOut' }, 2.2);
+      tl.to(sun,     { scale: 1.25, filter: 'blur(14px)', duration: 1.0, ease: 'power2.in' }, 2.3);
+      // Slow graceful fade to reveal the site
+      tl.to(loader,  { opacity: 0, duration: 1.4, ease: 'power1.inOut' }, 3.3);
     }});
   }
 
