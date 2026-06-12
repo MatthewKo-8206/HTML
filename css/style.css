@@ -39,24 +39,41 @@ body {
   display: flex; align-items: center; justify-content: center;
   overflow: hidden;
 }
-.pre-top, .pre-bot {
-  position: absolute; left: 0; width: 100%;
-  background: var(--dark); z-index: 1; will-change: transform;
+/* ── Sunrise layers (bottom → top) ────────────────────── */
+.pre-sky {
+  position: absolute; inset: 0; z-index: 0; opacity: 0;
+  background: linear-gradient(to top,
+    #1c0a00 0%,   /* warm earth at horizon */
+    #0e0818 45%,  /* pre-dawn indigo */
+    #060810 100%  /* deep night above */
+  );
 }
-.pre-top { top: 0; height: 51%; }
-.pre-bot { bottom: 0; height: 51%; }
-.pre-seam {
-  position: absolute; left: 0; top: 50%;
-  width: 100%; height: 2px; z-index: 4; opacity: 0;
-  transform: translateY(-50%);
-  background: linear-gradient(90deg, transparent 0%, rgba(255,190,60,0.6) 20%, #FFD580 50%, rgba(255,190,60,0.6) 80%, transparent 100%);
-  box-shadow: 0 0 24px 6px rgba(255,170,40,0.5), 0 0 80px 20px rgba(255,140,20,0.18);
+.pre-horizon {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 75%; z-index: 1; opacity: 0;
+  background: radial-gradient(ellipse 85% 85% at 50% 100%,
+    rgba(255,120,10,0.45) 0%,
+    rgba(255,75,0,0.20) 30%,
+    rgba(255,50,0,0.06) 55%,
+    transparent 72%
+  );
 }
-.pre-glow {
-  position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: 0;
-  background: radial-gradient(ellipse 70% 35% at 50% 50%, rgba(255,185,55,0.09) 0%, rgba(255,140,20,0.04) 45%, transparent 75%);
+.pre-sun {
+  position: absolute;
+  bottom: -140px; left: 50%;
+  transform: translateX(-50%);
+  width: 240px; height: 240px;
+  border-radius: 50%; z-index: 2; opacity: 0;
+  background: radial-gradient(circle,
+    rgba(255,248,200,1.0)  0%,
+    rgba(255,210,70,0.85) 18%,
+    rgba(255,160,20,0.50) 38%,
+    rgba(255,90,0,0.18)   58%,
+    transparent           76%
+  );
+  filter: blur(10px);
 }
-.pre-inner { text-align: center; position: relative; z-index: 2; }
+.pre-inner { text-align: center; position: relative; z-index: 10; }
 .pre-name {
   font-family: var(--serif); font-size: clamp(2rem, 5vw, 4rem);
   font-weight: 300; color: var(--cream); letter-spacing: 0.05em;
@@ -317,10 +334,14 @@ nav.nav-solid .nav-cta { border-color: var(--ink3); color: var(--ink2); }
 .tl-dot { position: absolute; left: -2.4rem; top: 0.5rem; width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--gold); background: var(--cream); transition: background 0.2s; }
 .tl-item:hover .tl-dot { background: var(--gold); }
 .tl-logo-img {
-  display: block; height: 18px; width: auto;
-  margin-bottom: 0.75rem; opacity: 0.85;
+  display: block; height: 20px; width: auto;
+  margin-bottom: 0.75rem;
+  mix-blend-mode: multiply; /* blends white bg into cream page bg */
 }
-.tl-logo-img-moelis { height: 14px; }
+.tl-logo-img-moelis   { height: 14px; }
+.tl-logo-img-anz      { height: 26px; }
+.tl-logo-img-deloitte { height: 22px; }
+.tl-logo-img-ellerston { height: 18px; }
 .tl-logo-badge {
   display: inline-block; margin-bottom: 0.75rem;
   padding: 0.22rem 0.65rem; border-radius: 2px;

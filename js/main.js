@@ -23,25 +23,32 @@ function initPreloader() {
     if (finished) return;
     finished = true;
     count.textContent = 100;
+
     gsap.to(fill, { width: '100%', duration: 0.4, ease: 'power2.out', onComplete: () => {
-      const inner = qs('.pre-inner', loader);
-      const seam  = qs('.pre-seam',  loader);
-      const glow  = qs('.pre-glow',  loader);
-      const top   = qs('.pre-top',   loader);
-      const bot   = qs('.pre-bot',   loader);
-      // 1. Hold at 100% briefly, then name fades
-      gsap.to(inner, { opacity: 0, y: -10, duration: 0.5, delay: 0.5, ease: 'power2.in' });
-      // 2. Warm golden glow blooms from center — sunlight cresting
-      gsap.to(glow, { opacity: 1, duration: 1.4, delay: 0.6, ease: 'power1.inOut' });
-      // 3. Seam ignites along the horizon
-      gsap.to(seam, { opacity: 1, duration: 0.9, delay: 1.1, ease: 'power2.out' });
-      // 4. Curtains slowly split — dawn breaks
-      gsap.to(top, { yPercent: -100, duration: 1.4, delay: 1.7, ease: 'power2.inOut' });
-      gsap.to(bot, { yPercent: 100,  duration: 1.4, delay: 1.7, ease: 'power2.inOut', onComplete: () => {
-        loader.style.display = 'none';
-        ScrollTrigger.refresh();
-        initHero();
-      }});
+      const inner   = qs('.pre-inner',   loader);
+      const sky     = qs('.pre-sky',     loader);
+      const horizon = qs('.pre-horizon', loader);
+      const sun     = qs('.pre-sun',     loader);
+
+      // One continuous sunrise timeline — no sharp intervals
+      const tl = gsap.timeline({
+        onComplete: () => {
+          loader.style.display = 'none';
+          ScrollTrigger.refresh();
+          initHero();
+        }
+      });
+
+      // Night sky warms to deep pre-dawn (starts immediately, long & gentle)
+      tl.to(sky,     { opacity: 1, duration: 2.6, ease: 'sine.inOut' }, 0);
+      // Horizon orange glow rises from below, overlapping sky warm
+      tl.to(horizon, { opacity: 1, duration: 2.8, ease: 'power2.out' }, 0.2);
+      // Sun disc climbs from below the horizon — the centrepiece
+      tl.to(sun,     { opacity: 1, bottom: '42%', duration: 3.0, ease: 'power1.out' }, 0.4);
+      // Text dissolves naturally as light floods in
+      tl.to(inner,   { opacity: 0, y: -8,  duration: 1.4, ease: 'sine.in'  }, 0.8);
+      // Full bloom — whole loader fades to transparent, revealing site
+      tl.to(loader,  { opacity: 0, duration: 1.2, ease: 'power1.inOut' }, 3.2);
     }});
   }
 
