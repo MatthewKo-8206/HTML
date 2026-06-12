@@ -207,7 +207,7 @@ function initCounters() {
       trigger: item,
       start: 'top 80%',
       onEnter: () => {
-        gsap.from({ val: 0 }, {
+        gsap.to({ val: 0 }, {
           val: target,
           duration: 1.4,
           ease: 'power2.out',

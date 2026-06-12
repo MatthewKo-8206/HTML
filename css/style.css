@@ -253,7 +253,7 @@ nav.nav-solid .nav-cta { border-color: var(--ink3); color: var(--ink2); }
 .manifesto-band { background: var(--dark); padding: 6rem 0; text-align: center; }
 .manifesto-inner { max-width: 880px; margin: 0 auto; padding: 0 2rem; }
 .m-eyebrow { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 2rem; }
-.m-quote { font-family: var(--serif); font-weight: 300; font-style: italic; font-size: clamp(1.4rem, 3vw, 2.6rem); line-height: 1.4; color: var(--cream); margin-bottom: 1.5rem; letter-spacing: -0.01em; }
+.m-quote { font-family: var(--serif); font-weight: 300; font-style: italic; font-size: clamp(1.05rem, 2.1vw, 1.8rem); line-height: 1.5; color: var(--cream); margin-bottom: 1.5rem; letter-spacing: -0.01em; }
 .m-quote em { font-style: normal; color: var(--gold2); }
 .m-sub { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,241,234,0.3); }
 
@@ -297,7 +297,7 @@ nav.nav-solid .nav-cta { border-color: var(--ink3); color: var(--ink2); }
 .career-aside { position: sticky; top: 7rem; display: flex; flex-direction: column; gap: 1px; }
 .aside-card { background: var(--dark3); padding: 2.25rem; border-left: 2px solid rgba(184,146,74,0.25); }
 .ac-label { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
-.ac-text { font-family: var(--serif); font-size: 1.05rem; font-weight: 300; font-style: italic; line-height: 1.7; color: rgba(245,241,234,0.65); }
+.ac-text { font-family: var(--serif); font-size: 1.2rem; font-weight: 300; font-style: italic; line-height: 1.75; color: rgba(245,241,234,0.8); }
 .ac-text strong { font-style: normal; font-weight: 400; color: var(--cream); }
 
 /* ── EDUCATION ─────────────────────────────────────────── */
