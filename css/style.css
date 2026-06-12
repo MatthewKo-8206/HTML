@@ -343,14 +343,11 @@ nav.nav-solid .nav-cta { border-color: var(--ink3); color: var(--ink2); }
 .tl-dot { position: absolute; left: -2.4rem; top: 0.5rem; width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--gold); background: var(--cream); transition: background 0.2s; }
 .tl-item:hover .tl-dot { background: var(--gold); }
 .tl-logo-img {
-  display: block; height: 20px; width: auto;
-  margin-bottom: 0.75rem;
+  display: block; height: 32px; width: auto;
+  max-width: 160px; object-fit: contain; object-position: left center;
+  margin-bottom: 0.85rem;
   mix-blend-mode: multiply;
 }
-.tl-logo-img-moelis    { height: 22px; }
-.tl-logo-img-anz       { height: 42px; }
-.tl-logo-img-deloitte  { height: 34px; }
-.tl-logo-img-ellerston { height: 28px; }
 .tl-logo-badge {
   display: inline-block; margin-bottom: 0.75rem;
   padding: 0.22rem 0.65rem; border-radius: 2px;
@@ -425,12 +422,32 @@ nav.nav-solid .nav-cta { border-color: var(--ink3); color: var(--ink2); }
 .hob-text { font-size: 0.82rem; font-weight: 300; color: rgba(245,241,234,0.55); line-height: 1.7; }
 .hob-text em { color: rgba(245,241,234,0.75); }
 
-.human-outro { margin-top: 5rem; padding-top: 4rem; border-top: 1px solid rgba(255,255,255,0.07); display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-.h-quote { font-family: var(--serif); font-size: 1.5rem; font-weight: 300; font-style: italic; line-height: 1.5; color: var(--cream); }
+.human-outro {
+  margin-top: 5rem; padding-top: 4rem;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 3rem;
+}
+.h-quote {
+  font-family: var(--serif); font-size: clamp(1.4rem, 2.8vw, 2rem);
+  font-weight: 300; font-style: italic; line-height: 1.55;
+  color: var(--cream); max-width: 680px;
+}
 .h-quote em { font-style: normal; color: var(--gold2); }
-.h-attr { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(245,241,234,0.3); margin-top: 1.25rem; }
-.h-next-label { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; }
-.h-next-item { font-size: 0.9rem; font-weight: 300; font-style: italic; color: rgba(245,241,234,0.55); margin-bottom: 0.85rem; line-height: 1.6; }
+.h-attr {
+  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: rgba(245,241,234,0.4); margin-top: -1.5rem;
+}
+.h-next { text-align: center; }
+.h-next-label {
+  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.25em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem;
+}
+.h-next-item {
+  font-family: var(--serif); font-size: 1.05rem; font-weight: 300;
+  font-style: italic; color: rgba(245,241,234,0.82);
+  margin-bottom: 0.75rem; line-height: 1.65;
+}
 
 /* ── CONNECT ───────────────────────────────────────────── */
 .section-connect { background: var(--cream); padding: 10rem 0 8rem; }
@@ -467,7 +484,7 @@ footer p { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.12em; 
   .edu-grid { grid-template-columns: 1fr; gap: 3rem; }
   .world-grid { grid-template-columns: repeat(2, 1fr); }
   .hobbies-grid { grid-template-columns: repeat(2, 1fr); }
-  .human-outro { grid-template-columns: 1fr; gap: 2.5rem; }
+  .human-outro { gap: 2rem; }
 }
 
 @media (max-width: 768px) {
