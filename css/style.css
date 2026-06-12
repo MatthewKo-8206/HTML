@@ -37,8 +37,22 @@ body {
   position: fixed; inset: 0; z-index: 9000;
   background: var(--dark);
   display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
 }
-.pre-inner { text-align: center; }
+.pre-top, .pre-bot {
+  position: absolute; left: 0; width: 100%;
+  background: var(--dark); z-index: 1; will-change: transform;
+}
+.pre-top { top: 0; height: 51%; }
+.pre-bot { bottom: 0; height: 51%; }
+.pre-seam {
+  position: absolute; left: 0; top: 50%;
+  width: 100%; height: 1px; z-index: 4; opacity: 0;
+  transform: translateY(-50%);
+  background: linear-gradient(90deg, transparent, var(--gold) 20%, var(--gold2) 50%, var(--gold) 80%, transparent);
+  box-shadow: 0 0 12px 2px rgba(184,146,74,0.45);
+}
+.pre-inner { text-align: center; position: relative; z-index: 2; }
 .pre-name {
   font-family: var(--serif); font-size: clamp(2rem, 5vw, 4rem);
   font-weight: 300; color: var(--cream); letter-spacing: 0.05em;
@@ -62,7 +76,6 @@ body {
   pointer-events: none; z-index: 9999;
   transform: translate(-50%, -50%);
   transition: width 0.3s var(--ease-out-expo), height 0.3s var(--ease-out-expo);
-  mix-blend-mode: multiply;
 }
 #cursor-ring {
   position: fixed; width: 36px; height: 36px;
@@ -249,6 +262,23 @@ nav.nav-solid .nav-cta { border-color: var(--ink3); color: var(--ink2); }
 .stat-num sup { font-size: 1.2rem; color: var(--gold); vertical-align: super; }
 .stat-label { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink4); line-height: 1.7; }
 
+/* ── VALUES STRIP ──────────────────────────────────────── */
+.values-strip {
+  display: flex; align-items: center; gap: 0.75rem;
+  flex-wrap: wrap; margin-top: 3rem; padding-top: 2rem;
+  border-top: 1px solid var(--cream3);
+}
+.v-label {
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--ink4); margin-right: 0.5rem;
+}
+.v-chip {
+  font-size: 0.72rem; letter-spacing: 0.1em; color: var(--ink3);
+  border: 1px solid var(--cream3); padding: 0.28rem 0.75rem;
+  border-radius: 2px; font-family: var(--sans); font-weight: 400;
+}
+.v-chip-gold { border-color: rgba(184,146,74,0.5); color: var(--gold2); }
+
 /* ── MANIFESTO ─────────────────────────────────────────── */
 .manifesto-band { background: var(--dark); padding: 6rem 0; text-align: center; }
 .manifesto-inner { max-width: 880px; margin: 0 auto; padding: 0 2rem; }
@@ -282,9 +312,21 @@ nav.nav-solid .nav-cta { border-color: var(--ink3); color: var(--ink2); }
 .tl-item:last-child { border-bottom: none; }
 .tl-dot { position: absolute; left: -2.4rem; top: 0.5rem; width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--gold); background: var(--cream); transition: background 0.2s; }
 .tl-item:hover .tl-dot { background: var(--gold); }
+.tl-logo-badge {
+  display: inline-block; margin-bottom: 0.75rem;
+  padding: 0.22rem 0.65rem; border-radius: 2px;
+  font-size: 0.72rem; font-family: var(--sans);
+  font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+  border: 1.5px solid currentColor;
+}
+.tl-logo-evercore { color: var(--ink); }
+.tl-logo-moelis   { color: #1b3a62; }
+.tl-logo-anz      { color: #007DBA; }
+.tl-logo-deloitte { color: #86BC25; }
+.tl-logo-ellerston { color: var(--ink3); font-size: 0.62rem; letter-spacing: 0.16em; }
+/* keep legacy names for backwards compat */
 .tl-logo-text { font-family: Georgia, serif; font-size: 1.2rem; letter-spacing: 0.05em; color: var(--ink4); margin-bottom: 0.65rem; }
 .tl-logo-sm { font-size: 0.85rem; letter-spacing: 0.18em; text-transform: uppercase; }
-.tl-logo-anz { font-family: Arial, sans-serif; font-size: 1.4rem; font-weight: 700; letter-spacing: 0.12em; color: rgba(0,125,186,0.65); margin-bottom: 0.65rem; }
 .tl-meta { display: flex; gap: 1rem; align-items: baseline; flex-wrap: wrap; margin-bottom: 0.4rem; }
 .tl-date { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
 .tl-org { font-family: var(--mono); font-size: 0.65rem; color: var(--ink4); }
@@ -307,10 +349,10 @@ nav.nav-solid .nav-cta { border-color: var(--ink3); color: var(--ink2); }
 .award-list { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
 .award-list li { display: flex; gap: 0.9rem; align-items: flex-start; }
 .a-dot { width: 5px; height: 5px; background: var(--gold); border-radius: 50%; margin-top: 0.55rem; flex-shrink: 0; }
-.a-text { font-size: 0.88rem; font-weight: 300; color: var(--ink2); line-height: 1.55; display: block; }
-.a-val { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.06em; color: var(--gold); margin-top: 0.15rem; display: block; }
+.a-text { font-size: 0.97rem; font-weight: 300; color: var(--ink2); line-height: 1.55; display: block; }
+.a-val { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.06em; color: var(--gold); margin-top: 0.15rem; display: block; }
 .rank-list { display: flex; flex-direction: column; }
-.rank-row { display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 0; border-bottom: 1px solid var(--cream3); font-size: 0.88rem; font-weight: 300; color: var(--ink2); }
+.rank-row { display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 0; border-bottom: 1px solid var(--cream3); font-size: 0.97rem; font-weight: 300; color: var(--ink2); }
 .rv { font-family: var(--mono); font-size: 0.68rem; color: var(--gold); }
 
 /* ── WORLD ─────────────────────────────────────────────── */
