@@ -150,7 +150,7 @@ function initHero() {
       gsap.from(inner, {
         yPercent: 110,
         duration: 1.1,
-        delay: 0.5 + i * 0.12,
+        delay: 0.5 + i * 0.18,
         ease: 'power4.out',
       });
     });
@@ -265,11 +265,18 @@ function initProjectCards() {
   });
 }
 
-// ── WORLD CARD HOVER ───────────────────────────────────────
+// ── WORLD CARD HOVER + BLUR REVEAL ────────────────────────
 function initWorldCards() {
   qsa('.we').forEach(card => {
     const img = qs('img', card);
     if (!img) return;
+    // Blur clears on scroll reveal — "coming into focus" moment
+    ScrollTrigger.create({
+      trigger: card,
+      start: 'top 88%',
+      onEnter: () => gsap.to(img, { filter: 'blur(0px)', duration: 0.9, ease: 'power2.out' }),
+      once: true
+    });
     card.addEventListener('mouseenter', () => gsap.to(img, { scale: 1.06, duration: 0.7, ease: 'power2.out' }));
     card.addEventListener('mouseleave', () => gsap.to(img, { scale: 1, duration: 0.6, ease: 'power2.out' }));
   });
@@ -282,6 +289,22 @@ function initHobbyCards() {
     if (!imgs.length) return;
     card.addEventListener('mouseenter', () => imgs.forEach(img => gsap.to(img, { scale: 1.05, duration: 0.7, ease: 'power2.out' })));
     card.addEventListener('mouseleave', () => imgs.forEach(img => gsap.to(img, { scale: 1, duration: 0.6, ease: 'power2.out' })));
+  });
+}
+
+// ── TIMELINE DOT REVEAL ────────────────────────────────────
+function initTimelineDots() {
+  qsa('.tl-dot').forEach((dot, i) => {
+    gsap.set(dot, { scale: 0, opacity: 0 });
+    ScrollTrigger.create({
+      trigger: dot,
+      start: 'top 85%',
+      onEnter: () => gsap.to(dot, {
+        scale: 1, opacity: 1, duration: 0.5,
+        delay: i * 0.08, ease: 'back.out(2)'
+      }),
+      once: true
+    });
   });
 }
 
@@ -329,4 +352,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initHobbyCards();
   initSectionAmbient();
   initManifesto();
+  initTimelineDots();
+
+  // Disable right-click to reduce casual code/content copying
+  document.addEventListener('contextmenu', e => e.preventDefault());
 });

@@ -311,9 +311,9 @@ nav.nav-solid .nav-cta { border-color: var(--ink3); color: var(--ink2); }
 
 /* ── MANIFESTO ─────────────────────────────────────────── */
 .manifesto-band { background: var(--dark); padding: 6rem 0; text-align: center; }
-.manifesto-inner { max-width: 880px; margin: 0 auto; padding: 0 2rem; }
+.manifesto-inner { max-width: 880px; margin: 0 auto; padding: 0 2rem 0 2.5rem; border-left: 3px solid rgba(184,146,74,0.35); }
 .m-eyebrow { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 2rem; }
-.m-quote { font-family: var(--serif); font-weight: 300; font-style: italic; font-size: clamp(1.05rem, 2.1vw, 1.8rem); line-height: 1.5; color: var(--cream); margin-bottom: 1.5rem; letter-spacing: -0.01em; }
+.m-quote { font-family: var(--serif); font-weight: 300; font-style: italic; font-size: clamp(1.15rem, 2.3vw, 1.95rem); line-height: 1.6; color: var(--cream); margin-bottom: 1.5rem; letter-spacing: -0.01em; }
 .m-quote em { font-style: normal; color: var(--gold2); }
 .m-sub { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,241,234,0.3); }
 
@@ -399,7 +399,7 @@ nav.nav-solid .nav-cta { border-color: var(--ink3); color: var(--ink2); }
 .world-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--cream3); border: 1px solid var(--cream3); }
 .we { background: var(--cream); overflow: hidden; }
 .we-img { height: 220px; overflow: hidden; }
-.we-img img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 0.7s var(--ease-out-expo); display: block; }
+.we-img img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 0.7s var(--ease-out-expo); display: block; filter: blur(5px); }
 .we:hover .we-img img { transform: scale(1.06); }
 .we-period { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); padding: 1.25rem 1.75rem 0.3rem; }
 .we-place { font-family: var(--serif); font-size: 1.2rem; font-weight: 300; color: var(--ink); padding: 0 1.75rem 0.6rem; }
@@ -409,7 +409,7 @@ nav.nav-solid .nav-cta { border-color: var(--ink3); color: var(--ink2); }
 .c-list { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.06em; color: var(--ink3); line-height: 2.2; }
 
 /* ── HOBBIES ───────────────────────────────────────────── */
-.hobbies-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.07); }
+.hobbies-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: rgba(255,255,255,0.13); border: 1px solid rgba(184,146,74,0.18); border-top: 2px solid rgba(184,146,74,0.25); }
 .hob { background: var(--dark2); overflow: hidden; transition: background 0.3s; }
 .hob:hover { background: var(--dark3); }
 .hob-img { height: 220px; overflow: hidden; }
@@ -439,10 +439,10 @@ nav.nav-solid .nav-cta { border-color: var(--ink3); color: var(--ink2); }
 .connect-h em { font-style: italic; color: var(--ink3); }
 .connect-sub { font-size: 1.05rem; font-weight: 300; font-style: italic; color: var(--ink2); max-width: 48ch; margin: 0 auto 3rem; line-height: 1.75; }
 .connect-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; justify-content: center; }
-.btn-primary { font-family: var(--sans); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 1rem 2.5rem; background: var(--ink); color: var(--cream); text-decoration: none; transition: background 0.2s; }
-.btn-primary:hover { background: var(--dark2); }
-.btn-outline { font-family: var(--sans); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 1rem 2.5rem; border: 1.5px solid var(--ink3); color: var(--ink2); text-decoration: none; transition: all 0.2s; }
-.btn-outline:hover { border-color: var(--ink); color: var(--ink); }
+.btn-primary { font-family: var(--sans); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 1rem 2.5rem; background: var(--ink); color: var(--cream); text-decoration: none; transition: background 0.25s, transform 0.2s, letter-spacing 0.2s; display: inline-block; }
+.btn-primary:hover { background: var(--dark2); transform: scaleY(1.04); letter-spacing: 0.14em; }
+.btn-outline { font-family: var(--sans); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 1rem 2.5rem; border: 1.5px solid var(--ink3); color: var(--ink2); text-decoration: none; transition: all 0.25s, transform 0.2s; display: inline-block; }
+.btn-outline:hover { border-color: var(--ink); color: var(--ink); transform: scaleY(1.04); }
 .connect-phone { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; color: var(--ink4); }
 
 /* ── FOOTER ────────────────────────────────────────────── */
@@ -485,4 +485,16 @@ footer p { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.12em; 
   .world-grid, .hobbies-grid { grid-template-columns: 1fr; }
   .projects-grid { grid-template-columns: 1fr; }
   footer { flex-direction: column; gap: 0.75rem; text-align: center; }
+}
+
+/* ── COPYRIGHT WATERMARK ───────────────────────────────── */
+body::after {
+  content: 'Matthew Ko © 2026';
+  position: fixed; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 4rem; font-family: var(--serif);
+  color: var(--ink); opacity: 0.012;
+  pointer-events: none; z-index: 0;
+  transform: rotate(-15deg);
+  white-space: nowrap; user-select: none;
 }
