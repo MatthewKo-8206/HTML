@@ -344,10 +344,12 @@ nav.nav-solid .nav-cta { border-color: var(--ink3); color: var(--ink2); }
 .tl-item:hover .tl-dot { background: var(--gold); }
 .tl-logo-img {
   display: block; height: 32px; width: auto;
-  max-width: 160px; object-fit: contain; object-position: left center;
+  max-width: 200px; object-fit: contain; object-position: left center;
   margin-bottom: 0.85rem;
   mix-blend-mode: multiply;
 }
+.tl-logo-img-anz      { height: 62px; }
+.tl-logo-img-deloitte { height: 52px; }
 .tl-logo-badge {
   display: inline-block; margin-bottom: 0.75rem;
   padding: 0.22rem 0.65rem; border-radius: 2px;
