@@ -348,8 +348,6 @@ nav.nav-solid .nav-cta { border-color: var(--ink3); color: var(--ink2); }
   margin-bottom: 0.85rem;
   mix-blend-mode: multiply;
 }
-.tl-logo-img-anz      { height: 104px; }
-.tl-logo-img-deloitte { height: 80px; }
 .tl-logo-badge {
   display: inline-block; margin-bottom: 0.75rem;
   padding: 0.22rem 0.65rem; border-radius: 2px;
