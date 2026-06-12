@@ -316,6 +316,11 @@ nav.nav-solid .nav-cta { border-color: var(--ink3); color: var(--ink2); }
 .tl-item:last-child { border-bottom: none; }
 .tl-dot { position: absolute; left: -2.4rem; top: 0.5rem; width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--gold); background: var(--cream); transition: background 0.2s; }
 .tl-item:hover .tl-dot { background: var(--gold); }
+.tl-logo-img {
+  display: block; height: 18px; width: auto;
+  margin-bottom: 0.75rem; opacity: 0.85;
+}
+.tl-logo-img-moelis { height: 14px; }
 .tl-logo-badge {
   display: inline-block; margin-bottom: 0.75rem;
   padding: 0.22rem 0.65rem; border-radius: 2px;
